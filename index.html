@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="Style.css">
+	<title>Text Editor</title>
+
+</head>
+<body>
+	<h1 align="center" class="heading">TEXT BOX</h1>
+	<div class="container" align="center">
+		<form class="textboxform">
+			<label>Enter your text below</label>
+			<br><br>
+			<textarea id="text" rows="10" cols="70" onkeyup="updateInfo()" autofocus></textarea>
+			<br><br>
+			<button type="button" onclick="upperCase()">UpperCase</button>
+			<button type="button" onclick="lowerCase()">LowerCase</button>
+			<button type="button" onclick="FindText()">Find</button>
+			<button type="button" onclick="changeColor()">ChangeColor</button>
+			<button type="button" onclick="textUnderline()">Underline</button>
+			<button type="button" onclick="textUnderline()">Copy</button>
+
+			<br><br>
+			<h2 id="textInfo"> This text contains 0 words and 0 characters</h2>
+		</form>
+	</div>
+
+<script type="text/javascript">
+		let text = document.getElementById("text");
+		let textInfo = document.getElementById("textInfo");
+		let clr ;
+
+		function upperCase() {
+			text.value = text.value.toUpperCase();
+		}
+		function lowerCase() {
+			text.value = text.value.toLowerCase();
+		}
+
+		function FindText() {
+			let searchtxt = prompt("Enter the text : ");
+			if(text.value.includes(searchtxt)){
+				alert(`Search text "${searchtxt}" is present`);
+			}else{
+				alert(`Search text "${searchtxt}" is not present`);
+			}
+			
+		}
+		function changeColor() {
+			clr = prompt(("Enter your fav color : ").toLowerCase());
+			text.style.color=clr
+		}
+		function textUnderline() {
+			text.style.textDecoration =` underline 2px solid ${clr}`;
+		}
+
+		function updateInfo() {
+			let numberOfWords=text.value.trim().split(" ").length;
+			textInfo.innerHTML = `This text contains ${numberOfWords} words and ${text.value.length} characters`
+		}
+
+
+		function copyText() {
+			navigator.clipboard.writeText(text.value);
+		}
+		 
+
+
+
+
+</script>
+</body>
+</html>
